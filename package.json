@@ -1,0 +1,139 @@
+{
+  "name": "@uirouter/angular",
+  "description": "State-based routing for Angular",
+  "version": "14.0.0",
+  "scripts": {
+    "clean": "shx rm -rf lib lib-esm _bundles _doc dist",
+    "compile": "npm run clean && ngc",
+    "build": "ng-packagr -p ng-package.json",
+    "release": "release --deps @uirouter/core @uirouter/rx",
+    "check-peer-dependencies": "check-peer-dependencies",
+    "test": "jest --rootDir test",
+    "test:watch": "jest --rootDir test --watchAll",
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --rootDir test --runInBand",
+    "test:downstream": "test_downstream_projects",
+    "docs": "generate_docs",
+    "docs:publish": "generate_docs && publish_docs",
+    "prepublishOnly": "echo && echo DO NOT RUN npm publish.  Instead, run npm run release && echo && echo && false",
+    "changelog": "update_changelog --include-core"
+  },
+  "homepage": "https://ui-router.github.io/angular",
+  "contributors": [
+    {
+      "name": "Chris Thielen",
+      "web": "https://github.com/christopherthielen"
+    }
+  ],
+  "maintainers": [
+    {
+      "name": "UIRouter Team",
+      "web": "https://github.com/ui-router?tab=members"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ui-router/angular.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ui-router/angular/issues"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "license": "MIT",
+  "distDir": "dist",
+  "peerDependencies": {
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0",
+    "@uirouter/core": "^6.0.8",
+    "@uirouter/rx": "^1.0.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^18.0.0",
+    "@angular/animations": "^18.0.0",
+    "@angular/common": "^18.0.0",
+    "@angular/compiler": "^18.0.0",
+    "@angular/compiler-cli": "^18.0.0",
+    "@angular/core": "^18.0.0",
+    "@angular/platform-browser": "^18.0.0",
+    "@angular/platform-browser-dynamic": "^18.0.0",
+    "@types/jest": "^27.0.3",
+    "@types/jquery": "^3.5.9",
+    "@types/node": "^20.11.4",
+    "@uirouter/core": "^6.0.8",
+    "@uirouter/publish-scripts": "2.6.2",
+    "@uirouter/rx": "^1.0.0",
+    "husky": "^7.0.4",
+    "jest": "^29.0.0",
+    "jest-preset-angular": "^14.1.1",
+    "ng-packagr": "^18.0.0",
+    "postcss": "^8.0.0",
+    "prettier": "^2.5.0",
+    "pretty-quick": "^3.1.2",
+    "rxjs": "~7.8.0",
+    "rxjs-compat": "^6.5.4",
+    "schema-utils": "^4.0.0",
+    "ts-node": "10.4.0",
+    "tslib": "^2.3.0",
+    "tslint": "^6.1.0",
+    "typescript": "~5.4.5",
+    "zone.js": "~0.14.0"
+  },
+  "jest": {
+    "preset": "jest-preset-angular",
+    "setupFilesAfterEnv": [
+      "./setupJest.ts"
+    ]
+  },
+  "checkPeerDependencies": {
+    "ignore": [
+      "ajv"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "docgen": {
+    "publishDir": "_ng2_docs",
+    "navigation": {
+      "": [
+        "UIRouter"
+      ],
+      "Services": [
+        "StateService",
+        "StateRegistry",
+        "TransitionService",
+        "UrlService",
+        "UrlConfig",
+        "UrlRules"
+      ],
+      "Interfaces": [
+        "Ng2StateDeclaration",
+        "UiOnParamsChanged",
+        "UiOnExit"
+      ],
+      "Components": [
+        "UIView",
+        "UISref",
+        "UISrefActive"
+      ],
+      "Other": [
+        "Transition",
+        "Trace"
+      ]
+    },
+    "include": [
+      {
+        "pkg": "@uirouter/core",
+        "repo": "https://github.com/ui-router/core",
+        "branch": "master"
+      },
+      {
+        "pkg": "@uirouter/rx",
+        "repo": "https://github.com/ui-router/rx"
+      }
+    ]
+  }
+}
